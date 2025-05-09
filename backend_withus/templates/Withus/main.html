@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>계정을 고르시오</title>
+    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+</head>
+
+<body>
+<h1>계정을 고르시오</h1>
+<button class="profile-btn" style="width: 200px; height: 200px; background-color: #4CAF50; color: white; border: none; font-size: 16px; cursor: pointer;">나나</button>
+<button class="profile-btn" style="width: 200px; height: 200px; background-color: #4CAF50; color: white; border: none; font-size: 16px; cursor: pointer;">코코</button>
+<button class="profile-btn" style="width: 200px; height: 200px; background-color: #4CAF50; color: white; border: none; font-size: 16px; cursor: pointer;">미미</button>
+<button class="profile-btn" style="width: 200px; height: 200px; background-color: #4CAF50; color: white; border: none; font-size: 16px; cursor: pointer;">뀨</button>
+
+
+<script>
+    $('.profile-btn').click(function() {
+        let profileName = $(this).text().trim();
+        console.log('선택된 프로필 이름:', profileName);
+    
+        $.ajax({
+            url: '/', // 서버 주소로 바꿔줘
+            method: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({ profile: profileName }),
+            success: function(response) {
+                window.location.href = '/home';
+            },
+            error: function(error) {
+                console.error('에러 발생:', error);
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
